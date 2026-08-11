@@ -1868,7 +1868,7 @@ textarea:focus-visible {
 }
 
 /* ==========================================
-   CUSTOM CURSOR (DESKTOP)
+   CUSTOM CURSOR (DESKTOP VIEWPORT TARGET)
    ========================================== */
 .custom-cursor-dot,
 .custom-cursor-outline {
@@ -1876,11 +1876,11 @@ textarea:focus-visible {
   top: 0;
   left: 0;
   transform: translate(-50%, -50%);
-  border-radius: 50%;
   pointer-events: none;
   z-index: 99999;
   opacity: 0;
-  transition: opacity 0.3s ease, width 0.2s ease, height 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+  color: var(--maroon-bright);
+  transition: opacity 0.3s ease, transform 0.2s ease, color 0.2s ease, width 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94), height 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 @media (pointer: fine) {
@@ -1891,33 +1891,44 @@ textarea:focus-visible {
   
   .custom-cursor-dot {
     opacity: 1;
-    width: 6px;
-    height: 6px;
-    background-color: var(--maroon-bright);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 10px;
+    height: 10px;
     will-change: left, top;
   }
   
   .custom-cursor-outline {
     opacity: 1;
-    width: 32px;
-    height: 32px;
-    border: 1.5px solid var(--maroon-bright);
-    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
     will-change: left, top;
   }
+
+  .cursor-dot-svg,
+  .cursor-outline-svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+    transition: var(--transition-fast);
+  }
   
-  /* Hover Morphing States */
+  /* Hover Morphing States (Lock-on target rotation & color glow transitions) */
   .custom-cursor-dot.hovered {
-    width: 4px;
-    height: 4px;
-    background-color: var(--white);
+    color: var(--white);
+    transform: translate(-50%, -50%) scale(0.6);
   }
   
   .custom-cursor-outline.hovered {
-    width: 48px;
-    height: 48px;
-    border-color: var(--maroon-bright);
-    background-color: rgba(208, 67, 90, 0.1);
+    color: var(--white);
+    width: 44px;
+    height: 44px;
+    transform: translate(-50%, -50%) rotate(90deg); /* spins 90deg to target lock */
+    filter: drop-shadow(0 0 6px var(--maroon-bright));
   }
 }
 
