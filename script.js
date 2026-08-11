@@ -181,4 +181,59 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('scroll', handleHeaderScroll);
   handleHeaderScroll();
 
+  /* ==========================================
+     CUSTOM CURSOR (DESKTOP)
+     ========================================== */
+  const cursorDot = document.getElementById('custom-cursor-dot');
+  const cursorOutline = document.getElementById('custom-cursor-outline');
+
+  if (cursorDot && cursorOutline && window.matchMedia('(pointer: fine)').matches) {
+    document.addEventListener('mousemove', (e) => {
+      const posX = e.clientX;
+      const posY = e.clientY;
+
+      // Position the dot instantly
+      cursorDot.style.left = `${posX}px`;
+      cursorDot.style.top = `${posY}px`;
+
+      // Animate the outline with a slight delay
+      cursorOutline.animate({
+        left: `${posX}px`,
+        top: `${posY}px`
+      }, { duration: 150, fill: "forwards" });
+    });
+
+    // Hide custom cursor elements when cursor leaves the window bounds
+    document.addEventListener('mouseleave', () => {
+      cursorDot.style.opacity = '0';
+      cursorOutline.style.opacity = '0';
+    });
+    
+    document.addEventListener('mouseenter', () => {
+      cursorDot.style.opacity = '1';
+      cursorOutline.style.opacity = '1';
+    });
+
+    // Hover effect on interactive elements
+    const updateHoverState = () => {
+      const interactiveElements = document.querySelectorAll('a, button, .social-chip, .btn, .nav-toggle, [role="button"]');
+      interactiveElements.forEach(el => {
+        el.addEventListener('mouseenter', () => {
+          cursorDot.classList.add('hovered');
+          cursorOutline.classList.add('hovered');
+        });
+        el.addEventListener('mouseleave', () => {
+          cursorDot.classList.remove('hovered');
+          cursorOutline.classList.remove('hovered');
+        });
+      });
+    };
+    
+    updateHoverState();
+    
+    // Re-run hook when DOM is updated dynamically (just in case)
+    const observer = new MutationObserver(updateHoverState);
+    observer.observe(document.body, { childList: true, subtree: true });
+  }
+
 });

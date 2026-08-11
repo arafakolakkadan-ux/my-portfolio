@@ -1867,6 +1867,59 @@ textarea:focus-visible {
   }
 }
 
+/* ==========================================
+   CUSTOM CURSOR (DESKTOP)
+   ========================================== */
+.custom-cursor-dot,
+.custom-cursor-outline {
+  position: fixed;
+  top: 0;
+  left: 0;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99999;
+  opacity: 0;
+  transition: opacity 0.3s ease, width 0.2s ease, height 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+}
+
+@media (pointer: fine) {
+  /* Hide standard cursor */
+  html, body, a, button, input, textarea, select, .social-chip, .btn, .nav-toggle, [role="button"] {
+    cursor: none;
+  }
+  
+  .custom-cursor-dot {
+    opacity: 1;
+    width: 6px;
+    height: 6px;
+    background-color: var(--maroon-bright);
+    will-change: left, top;
+  }
+  
+  .custom-cursor-outline {
+    opacity: 1;
+    width: 32px;
+    height: 32px;
+    border: 1.5px solid var(--maroon-bright);
+    background-color: transparent;
+    will-change: left, top;
+  }
+  
+  /* Hover Morphing States */
+  .custom-cursor-dot.hovered {
+    width: 4px;
+    height: 4px;
+    background-color: var(--white);
+  }
+  
+  .custom-cursor-outline.hovered {
+    width: 48px;
+    height: 48px;
+    border-color: var(--maroon-bright);
+    background-color: rgba(208, 67, 90, 0.1);
+  }
+}
 
 
 
