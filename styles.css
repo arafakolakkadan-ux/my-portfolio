@@ -598,6 +598,51 @@ a {
   transform: scale(1.05);
 }
 
+/* Scroll Explore Indicator */
+.scroll-indicator {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  text-decoration: none;
+  cursor: pointer;
+  z-index: 10;
+  transition: var(--transition-smooth);
+}
+
+.scroll-indicator:hover {
+  color: var(--white);
+}
+
+.scroll-indicator-arrow {
+  color: var(--maroon-bright);
+  animation: scrollBounce 2s infinite ease-in-out;
+  transition: var(--transition-smooth);
+}
+
+.scroll-indicator:hover .scroll-indicator-arrow {
+  color: var(--white);
+  filter: drop-shadow(0 0 5px var(--maroon-bright));
+}
+
+@keyframes scrollBounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(6px);
+  }
+}
+
 /* ==========================================
    HIGHLIGHTS STRIP (HOME)
    ========================================== */
@@ -1884,6 +1929,11 @@ textarea:focus-visible {
   
   .process-card:hover .process-number-bg {
     transform: none !important;
+  }
+  .scroll-indicator-arrow {
+    animation: none !important;
+    transform: none !important;
+    transition: none !important;
   }
   
   .footer-social-link:hover,
