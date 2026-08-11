@@ -182,56 +182,76 @@ document.addEventListener('DOMContentLoaded', () => {
   handleHeaderScroll();
 
   /* ==========================================
-     CUSTOM CURSOR (DESKTOP)
+     CUSTOM CURSOR (DESKTOP AI SPARKLE LERP)
      ========================================== */
-  const cursorDot = document.getElementById('custom-cursor-dot');
-  const cursorOutline = document.getElementById('custom-cursor-outline');
+  const customCursor = document.getElementById('custom-cursor');
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
-  if (cursorDot && cursorOutline && window.matchMedia('(pointer: fine)').matches) {
+  if (customCursor && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    let targetX = 0;
+    let targetY = 0;
+    let currentX = 0;
+    let currentY = 0;
+    let isMouseActive = false;
+
+    // Track mouse movement
     document.addEventListener('mousemove', (e) => {
-      const posX = e.clientX;
-      const posY = e.clientY;
-
-      // Position the dot instantly
-      cursorDot.style.left = `${posX}px`;
-      cursorDot.style.top = `${posY}px`;
-
-      // Animate the outline with a slight delay
-      cursorOutline.animate({
-        left: `${posX}px`,
-        top: `${posY}px`
-      }, { duration: 150, fill: "forwards" });
+      targetX = e.clientX;
+      targetY = e.clientY;
+      
+      if (!isMouseActive) {
+        isMouseActive = true;
+        customCursor.style.opacity = '1';
+        currentX = targetX;
+        currentY = targetY;
+      }
+      
+      // Snap instantly if prefers-reduced-motion is enabled
+      if (prefersReducedMotion.matches) {
+        customCursor.style.left = `${targetX}px`;
+        customCursor.style.top = `${targetY}px`;
+      }
     });
 
-    // Hide custom cursor elements when cursor leaves the window bounds
+    // Lerp render loop (only runs when motion is not reduced)
+    const renderCursor = () => {
+      if (isMouseActive && !prefersReducedMotion.matches) {
+        const ease = 0.15;
+        currentX += (targetX - currentX) * ease;
+        currentY += (targetY - currentY) * ease;
+
+        customCursor.style.left = `${currentX.toFixed(2)}px`;
+        customCursor.style.top = `${currentY.toFixed(2)}px`;
+      }
+      requestAnimationFrame(renderCursor);
+    };
+    
+    renderCursor();
+
+    // Hide/show custom cursor bounds
     document.addEventListener('mouseleave', () => {
-      cursorDot.style.opacity = '0';
-      cursorOutline.style.opacity = '0';
+      customCursor.style.opacity = '0';
     });
     
     document.addEventListener('mouseenter', () => {
-      cursorDot.style.opacity = '1';
-      cursorOutline.style.opacity = '1';
+      customCursor.style.opacity = '1';
     });
 
-    // Hover effect on interactive elements
+    // Toggle hover state on interactive elements
     const updateHoverState = () => {
       const interactiveElements = document.querySelectorAll('a, button, .social-chip, .btn, .nav-toggle, [role="button"]');
       interactiveElements.forEach(el => {
         el.addEventListener('mouseenter', () => {
-          cursorDot.classList.add('hovered');
-          cursorOutline.classList.add('hovered');
+          customCursor.classList.add('hovered');
         });
         el.addEventListener('mouseleave', () => {
-          cursorDot.classList.remove('hovered');
-          cursorOutline.classList.remove('hovered');
+          customCursor.classList.remove('hovered');
         });
       });
     };
     
     updateHoverState();
     
-    // Re-run hook when DOM is updated dynamically (just in case)
     const observer = new MutationObserver(updateHoverState);
     observer.observe(document.body, { childList: true, subtree: true });
   }

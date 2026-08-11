@@ -1868,19 +1868,22 @@ textarea:focus-visible {
 }
 
 /* ==========================================
-   CUSTOM CURSOR (DESKTOP CIRCLE & DOT ANIMATED)
+   CUSTOM CURSOR (DESKTOP AI SPARKLE)
    ========================================== */
-.custom-cursor-dot,
-.custom-cursor-outline {
+.custom-cursor {
   position: fixed;
   top: 0;
   left: 0;
+  width: 28px;
+  height: 28px;
   transform: translate(-50%, -50%);
-  border-radius: 50%;
   pointer-events: none;
   z-index: 99999;
   opacity: 0;
-  transition: opacity 0.3s ease, width 0.25s ease, height 0.25s ease, background-color 0.2s ease, border-color 0.2s ease;
+  color: var(--maroon-bright);
+  filter: drop-shadow(0 0 6px rgba(208, 67, 90, 0.6));
+  transition: opacity 0.3s ease, width 0.3s ease, height 0.3s ease, color 0.3s ease, filter 0.3s ease;
+  will-change: left, top;
 }
 
 @media (pointer: fine) {
@@ -1889,75 +1892,57 @@ textarea:focus-visible {
     cursor: none;
   }
   
-  .custom-cursor-dot {
+  .custom-cursor {
     opacity: 1;
-    width: 6px;
-    height: 6px;
-    background-color: var(--maroon-bright);
-    will-change: left, top;
-    animation: dotBreathe 2s infinite ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   
-  .custom-cursor-outline {
-    opacity: 1;
-    width: 32px;
-    height: 32px;
-    border: 1.5px solid var(--maroon-bright);
-    background-color: transparent;
-    will-change: left, top;
-    animation: ringBreathe 2.5s infinite ease-in-out;
+  .sparkle-cursor-svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+    /* Gentle idle breathing + spin on the SVG itself */
+    animation: sparkleIdle 4s infinite linear;
   }
   
-  /* Hover Morphing States (accelerated breathing pulse transitions) */
-  .custom-cursor-dot.hovered {
-    width: 4px;
-    height: 4px;
-    background-color: var(--white);
-    animation: none; /* freeze scale pulse on hover for precision */
+  /* Hover Morphing States */
+  .custom-cursor.hovered {
+    color: var(--white);
+    filter: drop-shadow(0 0 10px var(--maroon-bright));
+    width: 38px;
+    height: 38px;
   }
   
-  .custom-cursor-outline.hovered {
-    width: 48px;
-    height: 48px;
-    border-color: var(--white);
-    background-color: rgba(208, 67, 90, 0.15);
-    animation: ringBreatheHover 1.2s infinite ease-in-out;
+  .custom-cursor.hovered .sparkle-cursor-svg {
+    animation: sparkleHover 1.5s infinite linear;
   }
 }
 
-/* Keyframes for Cursor Breathing Animations */
-@keyframes dotBreathe {
-  0%, 100% {
-    transform: translate(-50%, -50%) scale(1);
-    background-color: var(--maroon-bright);
+/* Keyframes for Sparkle SVG Idle Loop (Slow Spin + Scale Breathe) */
+@keyframes sparkleIdle {
+  0% {
+    transform: rotate(0deg) scale(1);
   }
   50% {
-    transform: translate(-50%, -50%) scale(1.25);
-    background-color: var(--white);
+    transform: rotate(180deg) scale(1.08);
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
   }
 }
 
-@keyframes ringBreathe {
-  0%, 100% {
-    transform: translate(-50%, -50%) scale(1);
-    box-shadow: 0 0 0 0 rgba(208, 67, 90, 0);
-    border-color: var(--maroon-bright);
+/* Keyframes for Sparkle SVG Hover Loop (Faster Spin + Breathing scale) */
+@keyframes sparkleHover {
+  0% {
+    transform: rotate(0deg) scale(1.2);
   }
   50% {
-    transform: translate(-50%, -50%) scale(1.08);
-    box-shadow: 0 0 8px 1px rgba(208, 67, 90, 0.2);
-    border-color: rgba(208, 67, 90, 0.6);
+    transform: rotate(180deg) scale(1.35);
   }
-}
-
-@keyframes ringBreatheHover {
-  0%, 100% {
-    transform: translate(-50%, -50%) scale(1);
-    box-shadow: 0 0 10px rgba(208, 67, 90, 0.4);
-  }
-  50% {
-    transform: translate(-50%, -50%) scale(1.15);
-    box-shadow: 0 0 20px rgba(208, 67, 90, 0.7);
+  100% {
+    transform: rotate(360deg) scale(1.2);
   }
 }
 
@@ -2034,9 +2019,11 @@ textarea:focus-visible {
     transform: none !important;
   }
 
-  .custom-cursor-dot,
-  .custom-cursor-outline {
+  .custom-cursor,
+  .sparkle-cursor-svg {
     animation: none !important;
+    transform: none !important;
+    transition: none !important;
   }
 
   * {
