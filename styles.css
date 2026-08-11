@@ -1868,7 +1868,7 @@ textarea:focus-visible {
 }
 
 /* ==========================================
-   CUSTOM CURSOR (DESKTOP CIRCLE & DOT)
+   CUSTOM CURSOR (DESKTOP CIRCLE & DOT ANIMATED)
    ========================================== */
 .custom-cursor-dot,
 .custom-cursor-outline {
@@ -1895,6 +1895,7 @@ textarea:focus-visible {
     height: 6px;
     background-color: var(--maroon-bright);
     will-change: left, top;
+    animation: dotBreathe 2s infinite ease-in-out;
   }
   
   .custom-cursor-outline {
@@ -1904,21 +1905,59 @@ textarea:focus-visible {
     border: 1.5px solid var(--maroon-bright);
     background-color: transparent;
     will-change: left, top;
+    animation: ringBreathe 2.5s infinite ease-in-out;
   }
   
-  /* Hover Morphing States */
+  /* Hover Morphing States (accelerated breathing pulse transitions) */
   .custom-cursor-dot.hovered {
     width: 4px;
     height: 4px;
     background-color: var(--white);
+    animation: none; /* freeze scale pulse on hover for precision */
   }
   
   .custom-cursor-outline.hovered {
     width: 48px;
     height: 48px;
-    border-color: var(--maroon-bright);
+    border-color: var(--white);
     background-color: rgba(208, 67, 90, 0.15);
-    filter: drop-shadow(0 0 6px var(--maroon-bright));
+    animation: ringBreatheHover 1.2s infinite ease-in-out;
+  }
+}
+
+/* Keyframes for Cursor Breathing Animations */
+@keyframes dotBreathe {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+    background-color: var(--maroon-bright);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.25);
+    background-color: var(--white);
+  }
+}
+
+@keyframes ringBreathe {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+    box-shadow: 0 0 0 0 rgba(208, 67, 90, 0);
+    border-color: var(--maroon-bright);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.08);
+    box-shadow: 0 0 8px 1px rgba(208, 67, 90, 0.2);
+    border-color: rgba(208, 67, 90, 0.6);
+  }
+}
+
+@keyframes ringBreatheHover {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+    box-shadow: 0 0 10px rgba(208, 67, 90, 0.4);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.15);
+    box-shadow: 0 0 20px rgba(208, 67, 90, 0.7);
   }
 }
 
@@ -1993,6 +2032,11 @@ textarea:focus-visible {
   .footer-social-link:hover,
   .footer-social-link:focus-visible {
     transform: none !important;
+  }
+
+  .custom-cursor-dot,
+  .custom-cursor-outline {
+    animation: none !important;
   }
 
   * {
