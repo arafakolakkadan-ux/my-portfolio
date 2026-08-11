@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arafa – AI Content Creator | Website Creator | Digital Marketer</title>
+  <meta name="description" content="Transforming ideas into AI-powered digital experiences. Stunning content, high-converting websites, and creative marketing strategies.">
+  
+  <!-- FontAwesome for Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Background Accent Glow -->
+  <div class="bg-glow"></div>
+
+  <!-- Header / Navigation -->
+  <header class="header" id="header">
+    <div class="container nav-container">
+      <a href="#home" class="logo" aria-label="Arafa Home">
+        ARAFA<span class="dot">.</span>
+      </a>
+      
+      <nav class="nav-menu" id="nav-menu">
+        <ul class="nav-list">
+          <li><a href="#home" class="nav-link">Home</a></li>
+          <li><a href="#about" class="nav-link">About</a></li>
+          <li><a href="#services" class="nav-link">Services</a></li>
+          <li><a href="#process" class="nav-link">Process</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+      
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-menu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- Home Hero Section -->
+    <section class="hero-section" id="home">
+      <div class="container hero-container">
+        
+        <!-- Hero Visual (Left on desktop, viewfinder motif) -->
+        <div class="hero-visual reveal" style="transition-delay: 200ms;">
+          <div class="viewfinder-frame">
+            <div class="viewfinder-inner-brackets"></div>
+            <div class="viewfinder-status">Active</div>
+            <div class="viewfinder-scan"></div>
+            
+            <div class="viewfinder-content">
+              <div class="video-wrapper">
+                <video class="hero-video" autoplay loop muted playsinline preload="auto" poster="assets/hero-poster.jpg" id="hero-video-play">
+                  <source src="assets/hero-video.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+                <button class="mute-btn" id="mute-btn" aria-label="Unmute Video">
+                  <i class="fa-solid fa-volume-xmark" id="mute-icon"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Hero Content (Right on desktop) -->
+        <div class="hero-content reveal" style="transition-delay: 100ms;">
+          <div class="eyebrow">Digital Creator & Strategist</div>
+          
+          <h1 class="hero-title">Arafa</h1>
+          
+          <!-- Typewriter Cycling roles -->
+          <div class="typewriter-container">
+            <span id="typewriter-text"></span><span class="typewriter-cursor"></span>
+          </div>
+          
+          <p class="hero-subtitle">
+            Transforming ideas into AI-powered digital experiences.
+          </p>
+          
+          <p class="hero-description">
+            I'm Arafa, an AI content creator passionate about helping businesses grow through AI-powered content, stunning websites, creative marketing, and high-converting digital strategies.
+          </p>
+          
+          <div class="hero-actions">
+            <a href="https://drive.google.com/drive/folders/1m_n-XJJhjym1yIe6qjbgjTdWsM8Eu6t_?usp=sharing" target="_blank" rel="noopener noreferrer" class="btn btn-primary">View My Services</a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Highlights Section -->
+    <section class="highlights-section">
+      <div class="container">
+        <div class="highlights-grid">
+          
+          <!-- Highlight Item 1 -->
+          <div class="highlight-card reveal" style="transition-delay: 100ms;">
+            <div class="highlight-icon">
+              <i class="fa-solid fa-wand-magic-sparkles"></i>
+            </div>
+            <h3>AI Content</h3>
+            <p>High-converting AI visual content, tailored writing models, and automated video pipelines designed to drive viral growth.</p>
+            <a href="#services" class="highlight-link">Learn More <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+          
+          <!-- Highlight Item 2 -->
+          <div class="highlight-card reveal" style="transition-delay: 200ms;">
+            <div class="highlight-icon">
+              <i class="fa-solid fa-laptop-code"></i>
+            </div>
+            <h3>Web Design</h3>
+            <p>Fast, premium websites embedded with smooth animations, robust search engine architectures, and modular code structures.</p>
+            <a href="#services" class="highlight-link">Learn More <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+          
+          <!-- Highlight Item 3 -->
+          <div class="highlight-card reveal" style="transition-delay: 300ms;">
+            <div class="highlight-icon">
+              <i class="fa-solid fa-chart-line"></i>
+            </div>
+            <h3>Digital Marketing</h3>
+            <p>Data-centric growth architectures combining automated customer journeys, visual branding, and high-ROI landing pages.</p>
+            <a href="#services" class="highlight-link">Learn More <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+          
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section" id="about">
+      <div class="container about-grid">
+        
+        <!-- Profile visual (Left side on desktop) -->
+        <div class="about-visual reveal" style="transition-delay: 200ms;">
+          <div class="viewfinder-frame">
+            <div class="viewfinder-inner-brackets"></div>
+            <div class="viewfinder-status">Profile — Loaded</div>
+            <div class="viewfinder-scan"></div>
+            
+            <div class="viewfinder-content">
+              <img src="assets/about-photo.png" alt="Portrait photo of Arafa, an AI Content Creator" class="about-img">
+              
+              <!-- Legibility Scrim Overlay -->
+              <div class="viewfinder-scrim"></div>
+              
+              <!-- Terminal Qualifications Overlay -->
+              <div class="viewfinder-credentials">
+                <pre><code>// B.Com — Bachelor of Commerce
+// IPA — Professional Accountants Course
+// 1 Yr Teaching Exp. — Accounts</code></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Bio content (Right side on desktop) -->
+        <div class="about-content">
+          <span class="eyebrow reveal" style="transition-delay: 100ms;">About Me</span>
+          
+          <h2 class="about-heading reveal" style="transition-delay: 200ms;">
+            Creativity, strategy, and <span class="highlight-text">AI</span> — working as one.
+          </h2>
+          
+          <div class="about-bio">
+            <p class="reveal" style="transition-delay: 300ms;">
+              Hi, I'm Arafa — an AI Content Creator passionate about combining creativity, technology, and marketing to build impactful digital experiences.
+            </p>
+            
+            <p class="reveal" style="transition-delay: 400ms;">
+              I hold a Bachelor of Commerce (B.Com) degree and have successfully completed an IPA (Indian Professional Accountants) course. My professional journey also includes one year of teaching experience in Accounts, where I developed strong communication, analytical thinking, and problem-solving skills.
+            </p>
+            
+            <p class="reveal" style="transition-delay: 500ms;">
+              Today, I specialize in using Artificial Intelligence to help businesses establish a powerful online presence. From cinematic AI videos and modern websites to Meta Ads and strategic content marketing, I build digital solutions that create real business growth.
+            </p>
+            
+            <p class="reveal" style="transition-delay: 600ms;">
+              Whether you're a startup, entrepreneur, or established business, I'm here to transform your ideas into engaging digital experiences that inspire, connect, and convert.
+            </p>
+          </div>
+
+          <!-- Skill Tags Row -->
+          <div class="skills-block reveal" style="transition-delay: 700ms;">
+            <div class="skills-list" role="list">
+              <span class="skill-tag" role="listitem">AI Video Production</span>
+              <span class="skill-tag" role="listitem">Website Design</span>
+              <span class="skill-tag" role="listitem">Meta Ads</span>
+              <span class="skill-tag" role="listitem">Content Marketing</span>
+              <span class="skill-tag" role="listitem">Digital Strategy</span>
+            </div>
+          </div>
+
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services-hero-section" id="services">
+      <div class="container">
+        <div class="services-hero-content">
+          <span class="eyebrow reveal" style="transition-delay: 100ms;">What I Do</span>
+          <h2 class="services-heading reveal" style="transition-delay: 200ms;">
+            Services built to grow your <span class="highlight-text">brand</span>, online.
+          </h2>
+          <p class="services-subheading reveal" style="transition-delay: 300ms;">
+            From AI-generated content to full digital campaigns — every service is designed to turn attention into measurable business results.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Grid Section -->
+    <section class="services-grid-section">
+      <div class="container">
+        <div class="services-grid-new" role="list">
+          
+          <!-- Card 1 -->
+          <div class="service-card-new reveal" style="transition-delay: 100ms;" role="listitem" tabindex="0">
+            <div class="service-card-bracket bracket-tl"></div>
+            <div class="service-card-bracket bracket-br"></div>
+            <div class="service-card-content">
+              <div class="service-icon-box">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="service-icon-svg">
+                  <path d="M15 4V2M15 16v-2M8 9h2M20 9h-2M15 9l-2-2 2-2 2 2-2 2Z" />
+                  <path d="M2 17h10M2 13h7M2 21h12" />
+                </svg>
+              </div>
+              <h3 class="service-card-title">AI Content Creation</h3>
+              <p class="service-card-desc">Creating engaging AI-powered content for brands, businesses, and creators.</p>
+            </div>
+          </div>
+          
+          <!-- Card 2 -->
+          <div class="service-card-new reveal" style="transition-delay: 200ms;" role="listitem" tabindex="0">
+            <div class="service-card-bracket bracket-tl"></div>
+            <div class="service-card-bracket bracket-br"></div>
+            <div class="service-card-content">
+              <div class="service-icon-box">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="service-icon-svg">
+                  <path d="m22 8-6 4 6 4V8Z" />
+                  <rect width="14" height="12" x="2" y="6" rx="2" ry="2" />
+                  <circle cx="9" cy="12" r="1" />
+                </svg>
+              </div>
+              <h3 class="service-card-title">AI Commercial Videos</h3>
+              <p class="service-card-desc">Professional AI advertisements for products, restaurants, real estate, and businesses.</p>
+            </div>
+          </div>
+          
+          <!-- Card 3 -->
+          <div class="service-card-new reveal" style="transition-delay: 300ms;" role="listitem" tabindex="0">
+            <div class="service-card-bracket bracket-tl"></div>
+            <div class="service-card-bracket bracket-br"></div>
+            <div class="service-card-content">
+              <div class="service-icon-box">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="service-icon-svg">
+                  <rect width="20" height="14" x="2" y="3" rx="2" />
+                  <path d="M12 17v4M8 21h8M8 12l-2-2 2-2M16 8l2 2-2 2" />
+                </svg>
+              </div>
+              <h3 class="service-card-title">Website Creation</h3>
+              <p class="service-card-desc">Modern, responsive websites designed to strengthen your brand and convert visitors into customers.</p>
+            </div>
+          </div>
+          
+          <!-- Card 4 -->
+          <div class="service-card-new reveal" style="transition-delay: 400ms;" role="listitem" tabindex="0">
+            <div class="service-card-bracket bracket-tl"></div>
+            <div class="service-card-bracket bracket-br"></div>
+            <div class="service-card-content">
+              <div class="service-icon-box">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="service-icon-svg">
+                  <circle cx="12" cy="12" r="10" />
+                  <circle cx="12" cy="12" r="6" />
+                  <circle cx="12" cy="12" r="2" />
+                </svg>
+              </div>
+              <h3 class="service-card-title">Meta Ads</h3>
+              <p class="service-card-desc">Facebook and Instagram advertising campaigns focused on increasing sales and generating quality leads.</p>
+            </div>
+          </div>
+          
+          <!-- Card 5 -->
+          <div class="service-card-new reveal" style="transition-delay: 500ms;" role="listitem" tabindex="0">
+            <div class="service-card-bracket bracket-tl"></div>
+            <div class="service-card-bracket bracket-br"></div>
+            <div class="service-card-content">
+              <div class="service-icon-box">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="service-icon-svg">
+                  <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5Z" />
+                </svg>
+              </div>
+              <h3 class="service-card-title">Social Media Marketing</h3>
+              <p class="service-card-desc">Content planning, strategy, and management to build a strong online presence.</p>
+            </div>
+          </div>
+          
+          <!-- Card 6 -->
+          <div class="service-card-new reveal" style="transition-delay: 600ms;" role="listitem" tabindex="0">
+            <div class="service-card-bracket bracket-tl"></div>
+            <div class="service-card-bracket bracket-br"></div>
+            <div class="service-card-content">
+              <div class="service-icon-box">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="service-icon-svg">
+                  <path d="M3 3v18h18M18.7 8l-5.1 5.2-2.8-2.7L7 14.3" />
+                </svg>
+              </div>
+              <h3 class="service-card-title">Content Strategy</h3>
+              <p class="service-card-desc">Developing effective content plans that align with your business goals and audience.</p>
+            </div>
+          </div>
+          
+          <!-- Card 7 -->
+          <div class="service-card-new reveal" style="transition-delay: 700ms;" role="listitem" tabindex="0">
+            <div class="service-card-bracket bracket-tl"></div>
+            <div class="service-card-bracket bracket-br"></div>
+            <div class="service-card-content">
+              <div class="service-icon-box">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="service-icon-svg">
+                  <path d="M12 2 2 7l10 5 10-5-10-5Z" />
+                  <path d="M2 17l10 5 10-5M2 12l10 5 10-5" />
+                </svg>
+              </div>
+              <h3 class="service-card-title">Creative Branding</h3>
+              <p class="service-card-desc">Helping businesses establish a unique visual identity and digital brand presence.</p>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </section>
+
+    <!-- Work Process Section -->
+    <section class="process-section" id="process">
+      <div class="container">
+        
+        <div class="process-hero-content">
+          <span class="eyebrow reveal" style="transition-delay: 100ms;">How I Work</span>
+          <h2 class="process-heading reveal" style="transition-delay: 200ms;">
+            A process built for <span class="highlight-text">results</span>.
+          </h2>
+        </div>
+
+        <div class="process-grid">
+          
+          <!-- Step 1 -->
+          <div class="process-card reveal" style="transition-delay: 100ms;">
+            <div class="process-number-bg">01</div>
+            <div class="process-card-content">
+              <h3 class="process-step-title">Understand Your Business</h3>
+              <p class="process-step-desc">Learning your goals, audience, and brand identity.</p>
+            </div>
+            <!-- Corner Brackets motif -->
+            <div class="process-card-bracket bracket-tl"></div>
+            <div class="process-card-bracket bracket-br"></div>
+          </div>
+          
+          <!-- Step 2 -->
+          <div class="process-card reveal" style="transition-delay: 200ms;">
+            <div class="process-number-bg">02</div>
+            <div class="process-card-content">
+              <h3 class="process-step-title">Plan Strategy</h3>
+              <p class="process-step-desc">Creating the right content and marketing approach.</p>
+            </div>
+            <!-- Corner Brackets motif -->
+            <div class="process-card-bracket bracket-tl"></div>
+            <div class="process-card-bracket bracket-br"></div>
+          </div>
+          
+          <!-- Step 3 -->
+          <div class="process-card reveal" style="transition-delay: 300ms;">
+            <div class="process-number-bg">03</div>
+            <div class="process-card-content">
+              <h3 class="process-step-title">Design & Create</h3>
+              <p class="process-step-desc">Producing websites, videos, advertisements, and creative assets.</p>
+            </div>
+            <!-- Corner Brackets motif -->
+            <div class="process-card-bracket bracket-tl"></div>
+            <div class="process-card-bracket bracket-br"></div>
+          </div>
+          
+          <!-- Step 4 -->
+          <div class="process-card reveal" style="transition-delay: 400ms;">
+            <div class="process-number-bg">04</div>
+            <div class="process-card-content">
+              <h3 class="process-step-title">Deliver & Optimize</h3>
+              <p class="process-step-desc">Ensuring quality, performance, and client satisfaction.</p>
+            </div>
+            <!-- Corner Brackets motif -->
+            <div class="process-card-bracket bracket-tl"></div>
+            <div class="process-card-bracket bracket-br"></div>
+          </div>
+          
+        </div>
+      </div>
+    </section>
+
+    <!-- New Contact Section -->
+    <section class="contact-section" id="contact">
+      <div class="container">
+        
+        <div class="contact-hero-content">
+          <span class="eyebrow reveal" style="transition-delay: 100ms;">Get In Touch</span>
+          <h2 class="contact-heading reveal" style="transition-delay: 200ms;">
+            Let's build something that <span class="highlight-text">converts</span>.
+          </h2>
+          <p class="contact-subheading reveal" style="transition-delay: 300ms;">
+            Tell me a bit about your project — I'll get back to you soon.
+          </p>
+        </div>
+
+        <div class="contact-layout reveal" style="transition-delay: 400ms;">
+          <!-- Contact Form Box (Left side) -->
+          <!-- Contact CTA Column (Left side) -->
+          <div class="contact-cta-box">
+            <div class="contact-cta-container">
+              <!-- CTA Card 1 -->
+              <div class="contact-cta-card">
+                <p class="contact-cta-text">Ready to start your project? Let's get moving.</p>
+                <a href="https://wa.me/8590854678?text=send%20message" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-large-cta">Apply Now</a>
+              </div>
+              
+              <!-- CTA Card 2 -->
+              <div class="contact-cta-card">
+                <p class="contact-cta-text">Not sure where to begin? Book a free 15-minute call.</p>
+                <a href="#" class="btn btn-secondary btn-large-cta">Free Consultation</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Contact Details Block (Right side) -->
+          <div class="contact-details">
+            <div class="contact-info-block">
+              <span class="contact-info-label">Direct Communication</span>
+              <a href="mailto:arafakolakkadan@gmail.com" class="contact-info-value">arafakolakkadan@gmail.com</a>
+            </div>
+
+            <div class="contact-info-block">
+              <span class="contact-info-label">Base Location</span>
+              <p class="contact-info-value">Remote / Worldwide</p>
+            </div>
+
+            <div class="contact-info-block">
+              <span class="contact-info-label">Networks</span>
+              <div class="social-chips" role="list">
+                <!-- NOTE: Replace placeholder links with actual profile URLs when ready -->
+                <a href="https://wa.me/8590854678?text=send%20message" class="social-chip" role="listitem">Send Message</a>
+                <a href="https://www.instagram.com/ai.rafaa/" class="social-chip" role="listitem">Instagram</a>
+                <a href="https://www.linkedin.com/feed/" class="social-chip" role="listitem">LinkedIn</a>
+                <a href="https://www.facebook.com/" class="social-chip" role="listitem">Facebook</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- Shared Footer -->
+  <footer class="footer">
+    <div class="container footer-container">
+      <div class="footer-info">
+        <div class="footer-logo">ARAFA<span class="dot">.</span></div>
+        <p class="footer-tagline">AI Content Creator | Website Creator | Digital Marketer</p>
+      </div>
+      
+      <div class="footer-socials" role="list">
+        <!-- NOTE: Replace placeholder links with actual profile URLs when ready -->
+        <a href="https://wa.me/8590854678?text=send%20message" class="footer-social-link" aria-label="WhatsApp" role="listitem">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="footer-icon-svg">
+            <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5Z" />
+            <path d="M17 14c-.3-.1-1.7-.8-2-1-.3-.1-.5-.1-.7.2l-.7.9c-.2.2-.4.3-.7.1-1-.4-1.7-1-2.4-1.7-.6-.6-1-1.3-1.2-1.6-.2-.3 0-.5.2-.7l.5-.6c.2-.2.2-.3.3-.5.1-.2 0-.4-.1-.5-.1-.1-.7-1.7-.9-2.2-.2-.5-.5-.4-.7-.4h-.6c-.2 0-.5.1-.8.4A2.7 2.7 0 0 0 7 8.5C7 10 7.7 11.7 9 13.5c1.7 2.4 4.3 3.9 6.8 4.5.8.2 1.6.2 2.3-.1a3.6 3.6 0 0 0 2.2-2.3c.1-.4.1-.7.1-1 .1-.3-.2-.5-.4-.6Z" />
+          </svg>
+        </a>
+        <a href="https://www.instagram.com/ai.rafaa/" class="footer-social-link" aria-label="Instagram" role="listitem">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="footer-icon-svg">
+            <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37zM17.5 6.5h.01" />
+          </svg>
+        </a>
+        <a href="https://www.linkedin.com/feed/" class="footer-social-link" aria-label="LinkedIn" role="listitem">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="footer-icon-svg">
+            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z" />
+            <circle cx="4" cy="4" r="2" />
+          </svg>
+        </a>
+        <a href="https://www.facebook.com/" class="footer-social-link" aria-label="Facebook" role="listitem">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="footer-icon-svg">
+            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+          </svg>
+        </a>
+        <a href="mailto:arafakolakkadan@gmail.com" class="footer-social-link" aria-label="Email" role="listitem">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="footer-icon-svg">
+            <rect width="20" height="16" x="2" y="4" rx="2" />
+            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+          </svg>
+        </a>
+      </div>
+      
+      <p class="copyright">&copy; 2026 Arafa. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Custom JavaScript -->
+  <script src="script.js"></script>
+</body>
+</html>
