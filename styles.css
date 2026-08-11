@@ -1868,22 +1868,19 @@ textarea:focus-visible {
 }
 
 /* ==========================================
-   CUSTOM CURSOR (DESKTOP ANIMATED STAR)
+   CUSTOM CURSOR (DESKTOP DUAL-ELEMENT)
    ========================================== */
-.custom-cursor {
+.custom-cursor-dot,
+.custom-cursor-outline {
   position: fixed;
   top: 0;
   left: 0;
-  width: 18px;
-  height: 18px;
   transform: translate(-50%, -50%);
   pointer-events: none;
   z-index: 99999;
   opacity: 0;
-  color: var(--maroon-bright);
-  filter: drop-shadow(0 0 6px rgba(208, 67, 90, 0.5));
-  transition: opacity 0.3s ease, transform 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94), color 0.2s ease, filter 0.2s ease;
-  will-change: left, top;
+  transition: opacity 0.3s ease, border-color 0.3s ease, background-color 0.3s ease, filter 0.3s ease;
+  will-change: left, top, transform;
 }
 
 @media (pointer: fine) {
@@ -1892,37 +1889,38 @@ textarea:focus-visible {
     cursor: none;
   }
   
-  .custom-cursor {
+  .custom-cursor-dot {
     opacity: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    width: 8px;
+    height: 8px;
+    background-color: var(--maroon-bright);
+    border: 1px solid var(--white);
+    border-radius: 50%;
+    filter: drop-shadow(0 0 5px rgba(208, 67, 90, 0.6));
+    transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
   
-  .sparkle-cursor-svg {
-    width: 100%;
-    height: 100%;
-    display: block;
-    animation: starTwinkle 1.4s infinite ease-in-out;
+  .custom-cursor-outline {
+    opacity: 1;
+    width: 34px;
+    height: 34px;
+    border: 1.2px solid rgba(247, 243, 241, 0.4);
+    background-color: transparent;
+    border-radius: 50%;
+    transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-color 0.3s ease, background-color 0.3s ease;
   }
   
   /* Hover Morphing States */
-  .custom-cursor.hovered {
-    transform: translate(-50%, -50%) scale(1.4);
-    color: var(--white);
-    filter: drop-shadow(0 0 8px var(--maroon-bright));
+  .custom-cursor-dot.hovered {
+    transform: translate(-50%, -50%) scale(0.85);
+    background-color: var(--maroon-bright);
+    border-color: var(--white);
   }
-}
-
-/* Keyframe Loop for Idle Twinkling Star */
-@keyframes starTwinkle {
-  0%, 100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.4;
-    transform: scale(0.85);
+  
+  .custom-cursor-outline.hovered {
+    transform: translate(-50%, -50%) scale(2.0);
+    border-color: var(--white);
+    background-color: rgba(247, 243, 241, 0.05);
   }
 }
 
@@ -1999,10 +1997,9 @@ textarea:focus-visible {
     transform: none !important;
   }
 
-  .custom-cursor,
-  .sparkle-cursor-svg {
+  .custom-cursor-dot,
+  .custom-cursor-outline {
     animation: none !important;
-    transform: translate(-50%, -50%) !important;
     transition: none !important;
   }
 

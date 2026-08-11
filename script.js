@@ -163,77 +163,140 @@ document.addEventListener('DOMContentLoaded', () => {
   handleHeaderScroll();
 
   /* ==========================================
-     CUSTOM CURSOR (DESKTOP AI SPARKLE LERP)
+     CUSTOM CURSOR (DESKTOP DUAL-ELEMENT WITH MAGNETICS)
      ========================================== */
-  const customCursor = document.getElementById('custom-cursor');
+  const cursorDot = document.getElementById('custom-cursor-dot');
+  const cursorOutline = document.getElementById('custom-cursor-outline');
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
-  if (customCursor && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+  if (cursorDot && cursorOutline && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
     let targetX = 0;
     let targetY = 0;
-    let currentX = 0;
-    let currentY = 0;
+    
+    let dotX = 0;
+    let dotY = 0;
+    let outlineX = 0;
+    let outlineY = 0;
+    
+    let magnetX = 0;
+    let magnetY = 0;
+    
+    let hoveredElement = null;
     let isMouseActive = false;
 
-    // Track mouse movement
+    // Track mouse coordinates
     document.addEventListener('mousemove', (e) => {
       targetX = e.clientX;
       targetY = e.clientY;
       
       if (!isMouseActive) {
         isMouseActive = true;
-        customCursor.style.opacity = '1';
-        currentX = targetX;
-        currentY = targetY;
+        cursorDot.style.opacity = '1';
+        cursorOutline.style.opacity = '1';
+        dotX = targetX;
+        dotY = targetY;
+        outlineX = targetX;
+        outlineY = targetY;
       }
-      
-      // Snap instantly if prefers-reduced-motion is enabled
+
+      // Calculate magnetic pull offsets if inside bounds
+      if (hoveredElement) {
+        const rect = hoveredElement.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        
+        const diffX = centerX - targetX;
+        const diffY = centerY - targetY;
+        
+        const factor = 0.25; // snap factor
+        const maxCap = 8; // maximum 8px pull
+        
+        let px = diffX * factor;
+        let py = diffY * factor;
+        const pullMag = Math.hypot(px, py);
+        if (pullMag > maxCap) {
+          px = (px / pullMag) * maxCap;
+          py = (py / pullMag) * maxCap;
+        }
+        magnetX = px;
+        magnetY = py;
+      } else {
+        magnetX = 0;
+        magnetY = 0;
+      }
+
+      // If prefers-reduced-motion is active, snap positions 1:1 instantly
       if (prefersReducedMotion.matches) {
-        customCursor.style.left = `${targetX}px`;
-        customCursor.style.top = `${targetY}px`;
+        cursorDot.style.left = `${targetX}px`;
+        cursorDot.style.top = `${targetY}px`;
+        cursorOutline.style.left = `${targetX}px`;
+        cursorOutline.style.top = `${targetY}px`;
       }
     });
 
-    // Lerp render loop (only runs when motion is not reduced)
+    // Lerp rendering loop (skipped if prefers-reduced-motion is enabled)
     const renderCursor = () => {
       if (isMouseActive && !prefersReducedMotion.matches) {
-        const ease = 0.15;
-        currentX += (targetX - currentX) * ease;
-        currentY += (targetY - currentY) * ease;
+        // Dot tracking (faster response)
+        const dotEase = 0.20;
+        dotX += (targetX + magnetX - dotX) * dotEase;
+        dotY += (targetY + magnetY - dotY) * dotEase;
 
-        customCursor.style.left = `${currentX.toFixed(2)}px`;
-        customCursor.style.top = `${currentY.toFixed(2)}px`;
+        // Outline tracking (slower trailing lag response)
+        const outlineEase = 0.08;
+        outlineX += (targetX + magnetX - outlineX) * outlineEase;
+        outlineY += (targetY + magnetY - outlineY) * outlineEase;
+
+        cursorDot.style.left = `${dotX.toFixed(2)}px`;
+        cursorDot.style.top = `${dotY.toFixed(2)}px`;
+        cursorOutline.style.left = `${outlineX.toFixed(2)}px`;
+        cursorOutline.style.top = `${outlineY.toFixed(2)}px`;
       }
       requestAnimationFrame(renderCursor);
     };
     
     renderCursor();
 
-    // Hide/show custom cursor bounds
+    // Hide/show custom cursor elements on document boundaries
     document.addEventListener('mouseleave', () => {
-      customCursor.style.opacity = '0';
-    });
-    
-    document.addEventListener('mouseenter', () => {
-      customCursor.style.opacity = '1';
+      cursorDot.style.opacity = '0';
+      cursorOutline.style.opacity = '0';
     });
 
-    // Toggle hover state on interactive elements
-    const updateHoverState = () => {
-      const interactiveElements = document.querySelectorAll('a, button, .social-chip, .btn, .nav-toggle, [role="button"]');
+    document.addEventListener('mouseenter', () => {
+      cursorDot.style.opacity = '1';
+      cursorOutline.style.opacity = '1';
+    });
+
+    // Configure magnetic snap listeners on interactive items
+    const setupInteractiveListeners = () => {
+      const selectors = 'a, button, .social-chip, .btn, .nav-toggle, [role="button"], .service-card-new, .process-card';
+      const interactiveElements = document.querySelectorAll(selectors);
+
       interactiveElements.forEach(el => {
+        if (el.dataset.cursorBound) return;
+        el.dataset.cursorBound = 'true';
+
         el.addEventListener('mouseenter', () => {
-          customCursor.classList.add('hovered');
+          hoveredElement = el;
+          cursorDot.classList.add('hovered');
+          cursorOutline.classList.add('hovered');
         });
+
         el.addEventListener('mouseleave', () => {
-          customCursor.classList.remove('hovered');
+          hoveredElement = null;
+          magnetX = 0;
+          magnetY = 0;
+          cursorDot.classList.remove('hovered');
+          cursorOutline.classList.remove('hovered');
         });
       });
     };
-    
-    updateHoverState();
-    
-    const observer = new MutationObserver(updateHoverState);
+
+    setupInteractiveListeners();
+
+    // Re-run bindings on dynamic DOM insertions
+    const observer = new MutationObserver(setupInteractiveListeners);
     observer.observe(document.body, { childList: true, subtree: true });
   }
 
