@@ -1868,22 +1868,21 @@ textarea:focus-visible {
 }
 
 /* ==========================================
-   CUSTOM CURSOR (DESKTOP GLOWING DOT)
+   CUSTOM CURSOR (DESKTOP TWINKLING STAR)
    ========================================== */
 .custom-cursor {
   position: fixed;
   top: 0;
   left: 0;
-  width: 12px;
-  height: 12px;
-  background-color: var(--maroon-bright);
-  border-radius: 50%;
+  width: 18px;
+  height: 18px;
   transform: translate(-50%, -50%);
   pointer-events: none;
   z-index: 99999;
   opacity: 0;
+  color: var(--maroon-bright);
   filter: drop-shadow(0 0 6px rgba(208, 67, 90, 0.5));
-  transition: opacity 0.3s ease, transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94), background-color 0.2s ease, filter 0.2s ease;
+  transition: opacity 0.3s ease, transform 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94), color 0.25s ease, filter 0.25s ease;
   will-change: left, top;
 }
 
@@ -1895,13 +1894,36 @@ textarea:focus-visible {
   
   .custom-cursor {
     opacity: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .star-cursor-svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+    /* Twinkle pulse loop animation */
+    animation: starTwinkle 1.4s infinite ease-in-out;
   }
   
   /* Hover Morphing States */
   .custom-cursor.hovered {
-    transform: translate(-50%, -50%) scale(1.5);
-    background-color: var(--white);
+    transform: translate(-50%, -50%) scale(1.4);
+    color: var(--white);
     filter: drop-shadow(0 0 8px var(--maroon-bright));
+  }
+}
+
+/* Twinkle Twinkle keyframes: scale & opacity breathe */
+@keyframes starTwinkle {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(0.8);
+    opacity: 0.45;
   }
 }
 
@@ -1981,6 +2003,12 @@ textarea:focus-visible {
   .custom-cursor {
     animation: none !important;
     transform: translate(-50%, -50%) !important;
+    transition: none !important;
+  }
+  
+  .star-cursor-svg {
+    animation: none !important;
+    transform: none !important;
     transition: none !important;
   }
 
