@@ -147,25 +147,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 
-  /* ==========================================
-     MOBILE VIDEO BANDWIDTH FALLBACK
-     ========================================== */
-  const handleMediaFallback = () => {
-    if (window.innerWidth <= 760) {
-      // Hero video
-      const hVideo = document.getElementById('hero-video-play');
-      if (hVideo) {
-        const poster = hVideo.getAttribute('poster');
-        const parent = hVideo.parentElement;
-        if (poster && parent) {
-          parent.innerHTML = `<img src="${poster}" alt="Arafa video snapshot fallback" class="hero-poster-fallback" style="width:100%;height:100%;object-fit:cover;display:block;" />`;
-        }
-      }
-    }
-  };
-
-  handleMediaFallback();
-
 
   /* ==========================================
      HEADER SCROLL BAR CLASS
